@@ -418,12 +418,12 @@ class KlasaClient extends Discord.Client {
 	 */
 	async login(token) {
 		const timer = new Stopwatch();
-		const loaded = await Promise.all(this.pieceStores.map(async store => `Loaded ${await store.loadAll()} ${store.name}.`))
+		await Promise.all(this.pieceStores.map(async store => await store.loadAll()))
 			.catch((err) => {
 				console.error(err);
 				process.exit();
 			});
-		this.emit('log', loaded.join('\n'));
+		this.emit('log', 'Loaded all Pieces.');
 
 		// Providers must be init before settings, and those before all other stores.
 		await this.providers.init();
