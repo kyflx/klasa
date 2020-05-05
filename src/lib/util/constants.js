@@ -12,15 +12,6 @@ exports.DEFAULTS = {
 		commandEditing: false,
 		commandLogging: false,
 		commandMessageLifetime: 1800,
-		console: {},
-		consoleEvents: {
-			debug: false,
-			error: true,
-			log: true,
-			verbose: false,
-			warn: true,
-			wtf: true
-		},
 		createPiecesFolders: true,
 		disabledCorePieces: [],
 		language: 'en-US',

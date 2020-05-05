@@ -1,7 +1,7 @@
 const { Console } = require('console');
 const constants = require('./constants');
 const { mergeDefault } = require('./util');
-const Logger = require('@ayanaware/logger');
+const { Logger } = require('@ayanaware/logger');
 
 /**
  * Klasa's console class, extends NodeJS Console class.

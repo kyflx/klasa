@@ -65,7 +65,6 @@ module.exports = {
 	TextPrompt: require('./lib/usage/TextPrompt'),
 
 	// lib/util
-	Colors: require('./lib/util/Colors'),
 	KlasaConsole: require('./lib/util/KlasaConsole'),
 	constants: require('./lib/util/constants'),
 	Cron: require('./lib/util/Cron'),
