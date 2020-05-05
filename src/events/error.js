@@ -6,8 +6,4 @@ module.exports = class extends Event {
 		this.client.console.error(err);
 	}
 
-	init() {
-		if (!this.client.options.consoleEvents.error) this.disable();
-	}
-
 };

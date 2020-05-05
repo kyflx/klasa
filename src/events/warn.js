@@ -6,8 +6,4 @@ module.exports = class extends Event {
 		this.client.console.warn(warning);
 	}
 
-	init() {
-		if (!this.client.options.consoleEvents.warn) this.disable();
-	}
-
 };

@@ -6,8 +6,4 @@ module.exports = class extends Event {
 		this.client.console.verbose(log);
 	}
 
-	init() {
-		if (!this.client.options.consoleEvents.verbose) this.disable();
-	}
-
 };
