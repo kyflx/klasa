@@ -2,6 +2,7 @@ const { pathExists } = require('fs-nextra');
 const { join } = require('path');
 const Piece = require('./base/Piece');
 const { mergeDefault, isClass } = require('../util/util');
+const { get } = require('dot-prop');
 
 /**
  * Base class for all Klasa Languages. See {@tutorial CreatingLanguages} for more information how to use this class
@@ -13,14 +14,14 @@ class Language extends Piece {
 
 	/**
 	 * The method to get language strings
-	 * @since 0.2.1
+	 * @since 0.2.1`
 	 * @param {string} term The string or function to look up
 	 * @param {...*} args Any arguments to pass to the lookup
 	 * @returns {string|Function}
 	 */
 	get(term, ...args) {
 		if (!this.enabled && this !== this.store.default) return this.store.default.get(term, ...args);
-		const value = this.language[term];
+		const value = get(this.language, term);
 		/* eslint-disable new-cap */
 		switch (typeof value) {
 			case 'function': return value(...args);
