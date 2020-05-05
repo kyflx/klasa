@@ -428,7 +428,7 @@ declare module 'klasa' {
 
 	export abstract class Language extends Piece {
 		public constructor(store: LanguageStore, file: string[], directory: string, options?: LanguageOptions);
-		public language: Record<string, string | string[] | ((...args: any[]) => string | string[])>;
+		public language: Record<string, any>;
 
 		public get<T = string>(term: string, ...args: any[]): T;
 		public toJSON(): PieceLanguageJSON;
