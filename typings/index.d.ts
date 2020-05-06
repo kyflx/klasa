@@ -11,6 +11,7 @@ declare module 'klasa' {
 	export class KlasaClient extends Client {
 		public constructor(options: KlasaClientOptions);
 		public login(token?: string): Promise<string>;
+		public registerStores(): KlasaClient;
 		private validatePermissionLevels(): PermissionLevels;
 
 		public sweepMessages(lifetime?: number, commandLifeTime?: number): number;

@@ -296,17 +296,7 @@ class KlasaClient extends Discord.Client {
 		 */
 		this.application = null;
 
-		this.registerStore(this.commands)
-			.registerStore(this.inhibitors)
-			.registerStore(this.finalizers)
-			.registerStore(this.monitors)
-			.registerStore(this.languages)
-			.registerStore(this.providers)
-			.registerStore(this.events)
-			.registerStore(this.extendables)
-			.registerStore(this.tasks)
-			.registerStore(this.arguments)
-			.registerStore(this.serializers);
+		this.registerStores();
 
 		const coreDirectory = path.join(__dirname, '../');
 		for (const store of this.pieceStores.values()) store.registerCoreDirectory(coreDirectory);
@@ -371,6 +361,20 @@ class KlasaClient extends Discord.Client {
 	async fetchApplication() {
 		this.application = await super.fetchApplication();
 		return this.application;
+	}
+
+	registerStores() {
+		return this.registerStore(this.commands)
+			.registerStore(this.inhibitors)
+			.registerStore(this.finalizers)
+			.registerStore(this.monitors)
+			.registerStore(this.languages)
+			.registerStore(this.providers)
+			.registerStore(this.events)
+			.registerStore(this.extendables)
+			.registerStore(this.tasks)
+			.registerStore(this.arguments)
+			.registerStore(this.serializers);
 	}
 
 	/**
