@@ -1525,6 +1525,7 @@ declare module 'klasa' {
 declare module 'discord.js' {
 
 	import { ArgumentStore, Command, CommandStore, EventStore, ExtendableStore, Finalizer, FinalizerStore, GatewayDriver, InhibitorStore, KlasaClient, KlasaClientOptions, KlasaMessage, Language, LanguageStore, Monitor, MonitorStore, PermissionLevels, Piece, ProviderStore, Schedule, ScheduledTask, SerializerStore, Settings, Stopwatch, Store, Task, TaskStore } from 'klasa';
+	import { Signale, SignaleOptions } from "signale"
 
 	export interface Client {
 		constructor: typeof KlasaClient;

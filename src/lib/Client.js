@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const { Permissions, Permissions: { FLAGS } } = Discord;
 const path = require('path');
 const Signale = require('signale');
+const { yellow } = require('chalk');
 
 // lib/permissions
 const PermissionLevels = require('./permissions/PermissionLevels');
@@ -30,6 +31,7 @@ const Schema = require('./settings/schema/Schema');
 
 // lib/util
 const { DEFAULTS, MENTION_REGEX } = require('./util/constants');
+const Stopwatch = require('./util/Stopwatch');
 const util = require('./util/util');
 
 // external plugins
@@ -422,19 +424,19 @@ class KlasaClient extends Discord.Client {
 	 * @returns {string}
 	 */
 	async login(token) {
-		this.console.logger.time('start');
+		const timer = new Stopwatch();
 		await Promise.all(this.pieceStores.map(async store => await store.loadAll()))
 			.catch((err) => {
 				console.error(err);
 				process.exit();
 			});
-		this.emit('log', 'Loaded all Pieces.');
+		this.logger.success('Loaded all Pieces.');
 
 		// Providers must be init before settings, and those before all other stores.
 		await this.providers.init();
 		await this.gateways.init();
 
-		this.console.logger.timeEnd('start');
+		this.logger.success(`Loaded in ${yellow(timer.stop())}`);
 		return super.login(token);
 	}
 
