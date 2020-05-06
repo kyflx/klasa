@@ -934,7 +934,7 @@ declare module 'klasa' {
 		commandEditing?: boolean;
 		commandLogging?: boolean;
 		commandMessageLifetime?: number;
-		console?: ConsoleOptions;
+		console?: SignaleConfig;
 		consoleEvents?: ConsoleEvents;
 		createPiecesFolders?: boolean;
 		customPromptDefaults?: CustomPromptDefaults;

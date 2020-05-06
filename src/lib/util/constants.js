@@ -99,7 +99,6 @@ exports.DEFAULTS = {
 
 	CONSOLE: {
 		displayBadge: true,
-		displayFilename: true,
 		displayLabel: true,
 		displayScope: true,
 		underlineLabel: true,
