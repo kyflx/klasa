@@ -9,7 +9,7 @@ module.exports = class extends Event {
 
 	run(err) {
 		if (!err) return;
-		this.client.emit('error', `Uncaught Promise Error: \n${err.stack || err}`);
+		this.client.emit('error', err.stack);
 	}
 
 };
