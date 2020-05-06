@@ -1,5 +1,6 @@
 const { mergeDefault } = require('../../util/util');
 const { join } = require('path');
+const { Logger } = require('@ayanaware/logger');
 
 /**
  * The common class for all pieces
@@ -76,6 +77,13 @@ class Piece {
 		 * @type {string}
 		 */
 		this.directory = directory;
+
+		/**
+		 * A dedicated logger for this piece.
+		 * @since 0.5.0
+		 * @type {Logger}
+		 */
+		this.logger = Logger.custom(this.name, 'klasa', `${this.store.name}.`);
 	}
 
 	/**
