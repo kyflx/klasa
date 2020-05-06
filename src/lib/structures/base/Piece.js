@@ -1,6 +1,6 @@
 const { mergeDefault } = require('../../util/util');
 const { join } = require('path');
-const { Logger } = require('@ayanaware/logger');
+const { Signale } = require('signale');
 
 /**
  * The common class for all pieces
@@ -83,7 +83,7 @@ class Piece {
 		 * @since 0.5.0
 		 * @type {Logger}
 		 */
-		this.logger = Logger.custom(this.name, 'klasa', `${this.store.name}.`);
+		this.logger = new Signale({ scope: `${this.store.name}.${this.name}` });
 	}
 
 	/**

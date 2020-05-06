@@ -30,7 +30,6 @@ const Schema = require('./settings/schema/Schema');
 // lib/util
 const KlasaConsole = require('./util/KlasaConsole');
 const { DEFAULTS, MENTION_REGEX } = require('./util/constants');
-const Stopwatch = require('./util/Stopwatch');
 const util = require('./util/util');
 
 // external plugins
@@ -421,7 +420,7 @@ class KlasaClient extends Discord.Client {
 	 * @returns {string}
 	 */
 	async login(token) {
-		const timer = new Stopwatch();
+		this.console.logger.time('start');
 		await Promise.all(this.pieceStores.map(async store => await store.loadAll()))
 			.catch((err) => {
 				console.error(err);
@@ -433,7 +432,7 @@ class KlasaClient extends Discord.Client {
 		await this.providers.init();
 		await this.gateways.init();
 
-		this.emit('log', `Loaded in ${timer.stop()}.`);
+		this.console.logger.timeEnd('start');
 		return super.login(token);
 	}
 

@@ -1,7 +1,8 @@
 const { Console } = require('console');
 const constants = require('./constants');
 const { mergeDefault } = require('./util');
-const { Logger } = require('@ayanaware/logger');
+// const { Logger } = require('@ayanaware/logger');
+const { Signale, config } = require('signale');
 
 /**
  * Klasa's console class, extends NodeJS Console class.
@@ -11,8 +12,9 @@ class KlasaConsole extends Console {
 	constructor(options = {}) {
 		options = mergeDefault(constants.DEFAULTS.CONSOLE, options);
 		super(options.stdout, options.stderr);
+		config(options);
 
-		this.logger = Logger.custom('Klasa', 'klasa', 'console.');
+		this.logger = new Signale();
 	}
 
 	/**
@@ -27,61 +29,51 @@ class KlasaConsole extends Console {
 	/**
 	 * Calls a log write with everything to the console/writable stream.
 	 * @since 0.4.0
-	 * @param {string} log The data we want to print
-	 * @param {string} uniqueIdentifier The log identifier
-	 * @param {Object} extra Extra data
+	 * @param {...*} data Shit to log to the console.
 	 * @returns {void}
 	 */
-	log(log, uniqueIdentifier, extra) {
-		this.logger.info(log, uniqueIdentifier, extra);
+	log(...data) {
+		this.logger.info(...data);
 	}
 
 	/**
 	 * Calls a warn write with everything to the console/writable stream.
 	 * @since 0.4.0
-	 * @param {string} log The data we want to print
-	 * @param {string} uniqueIdentifier The log identifier
-	 * @param {Object} extra Extra data
+	 * @param {...*} data Shit to log to the console.
 	 * @returns {void}
 	 */
-	warn(log, uniqueIdentifier, extra) {
-		this.logger.warn(log, uniqueIdentifier, extra);
+	warn(...data) {
+		this.logger.warn(...data);
 	}
 
 	/**
 	 * Calls an error write with everything to the console/writable stream.
 	 * @since 0.4.0
-	 * @param {string} log The data we want to print
-	 * @param {string} uniqueIdentifier The log identifier
-	 * @param {Object} extra Extra data
+	 * @param {...*} data Shit to log to the console.
 	 * @returns {void}
 	 */
-	error(log, uniqueIdentifier, extra) {
-		this.logger.error(log, uniqueIdentifier, extra);
+	error(...data) {
+		this.logger.error(...data);
 	}
 
 	/**
 	 * Calls a debug write with everything to the console/writable stream.
 	 * @since 0.4.0
-	 * @param {string} log The data we want to print
-	 * @param {string} uniqueIdentifier The log identifier
-	 * @param {Object} extra Extra data
+	 * @param {...*} data Shit to log to the console.
 	 * @returns {void}
 	 */
-	debug(log, uniqueIdentifier, extra) {
-		this.logger.debug(log, uniqueIdentifier, extra);
+	debug(...data) {
+		this.logger.debug(...data);
 	}
 
 	/**
 	 * Calls a verbose write with everything to the console/writable stream.
 	 * @since 0.4.0
-	 * @param {string} log The data we want to print
-	 * @param {string} uniqueIdentifier The log identifier
-	 * @param {Object} extra Extra data
+	 * @param {...*} data Shit to log to the console.
 	 * @returns {void}
 	 */
-	verbose(log, uniqueIdentifier, extra) {
-		this.logger.trace(log, uniqueIdentifier, extra);
+	verbose(...data) {
+		this.logger.note(...data);
 	}
 
 	/**
@@ -92,8 +84,8 @@ class KlasaConsole extends Console {
 	 * @param {Object} extra Extra data
 	 * @returns {void}
 	 */
-	wtf(log, uniqueIdentifier, extra) {
-		this.logger.error(log, uniqueIdentifier, extra);
+	wtf(...data) {
+		this.logger.error(...data);
 	}
 
 }
