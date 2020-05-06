@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Permissions, Permissions: { FLAGS } } = Discord;
 const path = require('path');
-const Signale = require('signale');
+const signale = require('signale');
 const { yellow } = require('chalk');
 
 // lib/permissions
@@ -154,14 +154,14 @@ class KlasaClient extends Discord.Client {
 		 */
 		this.userBaseDirectory = options.directory;
 
-		Signale.config((options.logger || {}).config);
+		signale.config((options.logger || {}).config);
 
 		/**
 		 * Dedicated logger.
 		 * @since 0.4.0
 		 * @type {KlasaConsole}
 		 */
-		this.console = new Signale(options.logger);
+		this.console = new signale.Signale(options.logger);
 
 		/**
 		 * The cache where argument resolvers are stored

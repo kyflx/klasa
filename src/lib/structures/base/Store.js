@@ -107,8 +107,8 @@ class Store extends Collection {
 			if (!isClass(Piece)) throw new TypeError('The exported structure is not a class.');
 			piece = this.set(new Piece(this, file, directory));
 		} catch (error) {
-			if (this.client.listenerCount('wtf')) this.client.emit('wtf', `Failed to load file '${loc}'. Error:\n${error.stack || error}`);
-			else this.client.console.wtf(`Failed to load file '${loc}'. Error:\n${error.stack || error}`);
+			if (this.client.listenerCount('wtf')) this.client.emit('wtf', { prefix: `store ${this.name}`, message: error, suffix: file.slice(0, -1) });
+			else this.client.logger.fatal(`Failed to load file '${loc}'. Error:\n${error.stack || error}`);
 		}
 		delete require.cache[loc];
 		module.children.pop();
