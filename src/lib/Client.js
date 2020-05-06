@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const { Permissions, Permissions: { FLAGS } } = Discord;
 const path = require('path');
+const Signale = require('signale');
 
 // lib/permissions
 const PermissionLevels = require('./permissions/PermissionLevels');
@@ -28,7 +29,6 @@ const GatewayDriver = require('./settings/GatewayDriver');
 const Schema = require('./settings/schema/Schema');
 
 // lib/util
-const KlasaConsole = require('./util/KlasaConsole');
 const { DEFAULTS, MENTION_REGEX } = require('./util/constants');
 const util = require('./util/util');
 
@@ -152,12 +152,14 @@ class KlasaClient extends Discord.Client {
 		 */
 		this.userBaseDirectory = options.directory;
 
+		Signale.config((options.logger || {}).config);
+
 		/**
-		 * The console for this instance of klasa. You can disable timestamps, colors, and add writable streams as configuration options to configure this.
+		 * Dedicated logger.
 		 * @since 0.4.0
 		 * @type {KlasaConsole}
 		 */
-		this.console = new KlasaConsole(options.console);
+		this.console = new Signale(options.logger);
 
 		/**
 		 * The cache where argument resolvers are stored
