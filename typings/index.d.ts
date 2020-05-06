@@ -2,7 +2,7 @@ declare module 'klasa' {
 
 	import { ExecOptions } from 'child_process';
 	import { APIMessage, Channel, Client, ClientOptions, Collection, DMChannel, EmojiResolvable, Guild, GuildChannel, GuildMember, Message, MessageAdditions, MessageEmbed, MessageOptions, MessageReaction, MessageType, PermissionResolvable, Permissions, ReactionCollector, Role, Snowflake, StringResolvable, TextChannel, User, VoiceChannel } from 'discord.js';
-	import { Signale, SignaleConfig } from "signale"
+	import { Signale, SignaleConfig, SignaleBase } from "signale"
 
 	export const version: string;
 
@@ -321,6 +321,7 @@ declare module 'klasa' {
 	export abstract class Piece {
 		public constructor(store: Store<string, Piece, typeof Piece>, file: string[], directory: string, options?: PieceOptions);
 		public readonly client: KlasaClient;
+		public readonly logger: Signale;
 		public readonly type: string;
 		public readonly path: string;
 		public file: string[];
