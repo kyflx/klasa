@@ -1,29 +1,16 @@
-const { Console } = require('console');
 const constants = require('./constants');
 const { mergeDefault } = require('./util');
-// const { Logger } = require('@ayanaware/logger');
-const { Signale, config } = require('signale');
+const signale = require('signale');
 
 /**
  * Klasa's console class, extends NodeJS Console class.
  */
-class KlasaConsole extends Console {
+class KlasaConsole {
 
 	constructor(options = {}) {
 		options = mergeDefault(constants.DEFAULTS.CONSOLE, options);
-		super(options.stdout, options.stderr);
-		config(options);
-
-		this.logger = new Signale();
-	}
-
-	/**
-	 * The timestamp to use
-	 * @type {string}
-	 * @private
-	 */
-	get timestamp() {
-		return this.utc ? this.template.displayUTC() : this.template.display();
+		signale.config(options);
+		this.logger = signale;
 	}
 
 	/**

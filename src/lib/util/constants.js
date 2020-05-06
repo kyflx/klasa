@@ -98,14 +98,12 @@ exports.DEFAULTS = {
 	},
 
 	CONSOLE: {
-		config: {
-			displayBadge: true,
-			displayFilename: true,
-			displayLabel: true,
-			displayScope: true,
-			underlineLabel: true,
-			displayTimestamp: true
-		}
+		displayBadge: true,
+		displayFilename: true,
+		displayLabel: true,
+		displayScope: true,
+		underlineLabel: true,
+		displayTimestamp: true
 	},
 
 	QUERYBUILDER: {

@@ -2,7 +2,7 @@ declare module 'klasa' {
 
 	import { ExecOptions } from 'child_process';
 	import { APIMessage, Channel, Client, ClientOptions, Collection, DMChannel, EmojiResolvable, Guild, GuildChannel, GuildMember, Message, MessageAdditions, MessageEmbed, MessageOptions, MessageReaction, MessageType, PermissionResolvable, Permissions, ReactionCollector, Role, Snowflake, StringResolvable, TextChannel, User, VoiceChannel } from 'discord.js';
-
+	import { Signale, SignaleConfig } from "signale"
 
 	export const version: string;
 
@@ -730,25 +730,14 @@ declare module 'klasa' {
 	}
 
 	export class KlasaConsole {
-		private constructor(options?: ConsoleOptions);
-		public readonly stdout: NodeJS.WritableStream;
-		public readonly stderr: NodeJS.WritableStream;
-		public template: Timestamp | null;
-		public colors: ConsoleColorStyles;
-		public utc: boolean;
-
-		private readonly timestamp: string;
-
-		private write(data: any[], type?: string): void;
-
+		public logger: Signale;
+		private constructor(options?: SignaleConfig);
 		public log(...data: any[]): void;
 		public warn(...data: any[]): void;
 		public error(...data: any[]): void;
 		public debug(...data: any[]): void;
 		public verbose(...data: any[]): void;
 		public wtf(...data: any[]): void;
-
-		private static _flatten(data: any): string;
 	}
 
 	export class RateLimit {
@@ -1396,15 +1385,6 @@ declare module 'klasa' {
 	export interface ColorsFormatData {
 		opening: string[];
 		closing: string[];
-	}
-
-	export interface ConsoleOptions {
-		utc?: boolean;
-		colors?: ConsoleColorStyles;
-		stderr?: NodeJS.WritableStream;
-		stdout?: NodeJS.WritableStream;
-		timestamps?: boolean | string;
-		useColor?: boolean;
 	}
 
 	export interface ConsoleEvents {
