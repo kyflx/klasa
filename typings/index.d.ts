@@ -2,7 +2,7 @@ declare module 'klasa' {
 
 	import { ExecOptions } from 'child_process';
 	import { APIMessage, Channel, Client, ClientOptions, Collection, DMChannel, EmojiResolvable, Guild, GuildChannel, GuildMember, Message, MessageAdditions, MessageEmbed, MessageOptions, MessageReaction, MessageType, PermissionResolvable, Permissions, ReactionCollector, Role, Snowflake, StringResolvable, TextChannel, User, VoiceChannel } from 'discord.js';
-	import { Signale, SignaleConfig, SignaleBase } from "signale"
+	import { Signale, SignaleOptions } from "signale"
 
 	export const version: string;
 
@@ -730,16 +730,6 @@ declare module 'klasa' {
 		private static _parse(pattern: string): number;
 	}
 
-	export class KlasaConsole {
-		public logger: Signale;
-		private constructor(options?: SignaleConfig);
-		public log(...data: any[]): void;
-		public warn(...data: any[]): void;
-		public error(...data: any[]): void;
-		public debug(...data: any[]): void;
-		public verbose(...data: any[]): void;
-		public wtf(...data: any[]): void;
-	}
 
 	export class RateLimit {
 		public constructor(bucket: number, cooldown: number);
@@ -935,7 +925,7 @@ declare module 'klasa' {
 		commandEditing?: boolean;
 		commandLogging?: boolean;
 		commandMessageLifetime?: number;
-		console?: SignaleConfig;
+		logger?: SignaleOptions;
 		consoleEvents?: ConsoleEvents;
 		createPiecesFolders?: boolean;
 		customPromptDefaults?: CustomPromptDefaults;
@@ -1534,7 +1524,7 @@ declare module 'klasa' {
 
 declare module 'discord.js' {
 
-	import { ArgumentStore, Command, CommandStore, EventStore, ExtendableStore, Finalizer, FinalizerStore, GatewayDriver, InhibitorStore, KlasaClient, KlasaClientOptions, KlasaConsole, KlasaMessage, Language, LanguageStore, Monitor, MonitorStore, PermissionLevels, Piece, ProviderStore, Schedule, ScheduledTask, SerializerStore, Settings, Stopwatch, Store, Task, TaskStore } from 'klasa';
+	import { ArgumentStore, Command, CommandStore, EventStore, ExtendableStore, Finalizer, FinalizerStore, GatewayDriver, InhibitorStore, KlasaClient, KlasaClientOptions, KlasaMessage, Language, LanguageStore, Monitor, MonitorStore, PermissionLevels, Piece, ProviderStore, Schedule, ScheduledTask, SerializerStore, Settings, Stopwatch, Store, Task, TaskStore } from 'klasa';
 
 	export interface Client {
 		constructor: typeof KlasaClient;
@@ -1542,7 +1532,7 @@ declare module 'discord.js' {
 		readonly owners: Set<User>;
 		options: Required<KlasaClientOptions>;
 		userBaseDirectory: string;
-		console: KlasaConsole;
+		logger: Signale;
 		arguments: ArgumentStore;
 		commands: CommandStore;
 		inhibitors: InhibitorStore;
